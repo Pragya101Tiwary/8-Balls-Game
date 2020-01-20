@@ -41,7 +41,7 @@ class Balls8GUI extends JFrame{
 		
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8; j++){
-				Va.bt[i][j] = new JButton();
+				Va.bt[i][j] = new MButton(i,j);
 				Va.bt[i][j].setBorder(b);
 				Va.bt[i][j].addActionListener(btl);
 				pa[3].add(Va.bt[i][j]);
@@ -62,8 +62,9 @@ class Balls8GUI extends JFrame{
 		pa[0].setLayout(null);
 		ImageIcon iballs = new ImageIcon(getClass().getResource("images/iballs.jpg"));
 		for(int i=0, j=500; i<8 && j<=1165; i++, j+=95){
-			Va.balls[i] = new JButton(iballs);
-			//Va.balls[i].setBorder(b);
+			Va.balls[i] = new MButton(i);
+			Va.balls[i].setIcon(iballs);
+			Va.balls[i].setBorder(b);
 			Va.balls[i].addActionListener(btl);
 			pa[0].add(Va.balls[i]);
 			Va.balls[i].setBounds(j, 0, 95, 80);
