@@ -26,7 +26,7 @@ class Balls8GUI extends JFrame{
 			pa[i] = new JPanel();
 			bg.add(pa[i]);
 		}
-		pa[0].setBounds(20, 20, 1260, 80);
+		pa[0].setBounds(20, 15, 1260, 95);
 		pa[1].setBounds(20, 170, 480, 70);
 		pa[2].setBounds(30, 300, 460, 480);
 		pa[3].setBounds(520, 120, 760, 760);
@@ -67,7 +67,7 @@ class Balls8GUI extends JFrame{
 			Va.balls[i].setBorder(b);
 			Va.balls[i].addActionListener(btl);
 			pa[0].add(Va.balls[i]);
-			Va.balls[i].setBounds(j, 0, 95, 80);
+			Va.balls[i].setBounds(j, 0, 95, 95);
 		}
 		JLabel game_name = new JLabel("<html><body><center><font style = 'font-size:50px; color:black;'>8 BALLS</font></center></body></html>");
 		game_name.setBounds(120, 0, 300, 80);
