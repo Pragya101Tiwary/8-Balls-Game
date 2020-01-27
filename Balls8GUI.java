@@ -8,6 +8,7 @@ class Balls8GUI extends JFrame{
 	JLabel bg = new JLabel(new ImageIcon(getClass().getResource("images/iii.jpg")));
 	JPanel []pa = new JPanel[4];
 	ButtonListener btl = new ButtonListener();
+	ResetListener rst = new ResetListener();
 	
 	public Balls8GUI(){
 		super("8-Queens Game");
@@ -18,6 +19,7 @@ class Balls8GUI extends JFrame{
 		setIconImage(new ImageIcon(getClass().getResource("images/iball.jpg")).getImage());
 		add(bg);
 		addPanels();
+		Va.sound=java.applet.Applet.newAudioClip(getClass().getResource("sound/yay.wav"));
 		setVisible(true);
 	}
 	
@@ -51,7 +53,7 @@ class Balls8GUI extends JFrame{
 		Font f = new Font("georgia", Font.PLAIN, 42);
 		Va.reset.setFont(f);
 		Va.reset.setBackground(Color.green);
-		Va.reset.addActionListener(btl);
+		Va.reset.addActionListener(rst);
 		JLabel la = new JLabel(new ImageIcon(getClass().getResource("images/box4.jpg")));
 		JLabel la1 = new JLabel("<html><body><div align='justify' style = 'font-size:21px; color: #013220;'><center><font style = 'font-size:23px; color:black;'>Instructions:</font></center><br>^ Place all the 8 balls on the board such that no two balls are in the same row, column or division.<br><br>^ Here, each ball represents the queen of the chess. No queen should kill another queen.</div></body></html>");
 		la1.setBounds(33, 5, 421, 442);
@@ -77,6 +79,6 @@ class Balls8GUI extends JFrame{
 	}
 	
 	public static void main(String[] args){
-		new Balls8GUI();
+		Va.main=new Balls8GUI();
 	}
 }
