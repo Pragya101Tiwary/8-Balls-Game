@@ -55,14 +55,14 @@ class Balls8GUI extends JFrame{
 		Va.reset.setBackground(Color.green);
 		Va.reset.addActionListener(rst);
 		JLabel la = new JLabel(new ImageIcon(getClass().getResource("images/box4.jpg")));
-		JLabel la1 = new JLabel("<html><body><div align='justify' style = 'font-size:21px; color: #013220;'><center><font style = 'font-size:23px; color:black;'>Instructions:</font></center><br>^ Place all the 8 balls on the board such that no two balls are in the same row, column or division.<br><br>^ Here, each ball represents the queen of the chess. No queen should kill another queen.</div></body></html>");
+		JLabel la1 = new JLabel("<html><body><div align='justify' style = 'font-size:21px; color: #013220;'><center><font style = 'font-size:23px; color:black;'>Instructions:</font></center><br>^ Place all the 8 balls on the board such that no two balls are in the same row, column or diagonal.<br><br>^ Here, each ball represents the queen of the chess. No queen should kill another queen.</div></body></html>");
 		la1.setBounds(33, 5, 421, 442);
 		la.add(la1);
 		pa[2].add(la);
 		pa[2].setOpaque(false);
 		pa[1].setOpaque(false);
 		pa[0].setLayout(null);
-		ImageIcon iballs = new ImageIcon(getClass().getResource("images/iballs.jpg"));
+		ImageIcon iballs = new ImageIcon(getClass().getResource("images/iballs.png"));
 		for(int i=0, j=500; i<8 && j<=1165; i++, j+=95){
 			Va.balls[i] = new MButton(i);
 			Va.balls[i].setIcon(iballs);

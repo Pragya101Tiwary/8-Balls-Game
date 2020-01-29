@@ -5,9 +5,10 @@ import java.awt.event.*;
 
 class ButtonListener implements ActionListener{
 	public static int c=8;
-	public static Border black = BorderFactory.createLineBorder(Color.black, 3);
 	public void actionPerformed(ActionEvent evt){
-		ImageIcon iballs = new ImageIcon(getClass().getResource("images/iballs.jpg"));
+		ImageIcon iballs = new ImageIcon(getClass().getResource("images/iballs.png"));
+		ImageIcon igold = new ImageIcon(getClass().getResource("images/igold4.png"));
+		Border black = BorderFactory.createLineBorder(Color.black, 3);
 		Border blue = BorderFactory.createLineBorder(Color.blue, 4);
 		MButton b = (MButton)evt.getSource();
 		if(!Va.isSelected){
@@ -28,52 +29,38 @@ class ButtonListener implements ActionListener{
 				else if(Va.temp.isBoard && !b.isBoard)
 					c++;
 				if(c==0){
-					if(check(b.i, b.j)){
-						blackBorder();
+					if(isWinner()){
+						for(int i=0; i<8; i++)
+							for(int j=0; j<8; j++)
+								if(Va.bt[i][j].getIcon()!=null)
+									Va.bt[i][j].setIcon(igold);
 						Va.sound.play();
 						JOptionPane.showMessageDialog(Va.main, "Yayyyy! you did it.");
 					}
-				}
-				if(b.isBoard){
-					blackBorder();
-					check(b.i, b.j);					
 				}
 			}
 		}
 	}
 	private static boolean check(int a, int b){
-		Border red = BorderFactory.createLineBorder(Color.red, 4);
-		boolean is=true;
 		for(int i=0; i<8; i++){
-			if(Va.bt[a][i]!=Va.bt[a][b] && Va.bt[a][i].getIcon()!=null){
-				Va.bt[a][i].setBorder(red);
-				is = false;
-			}
-			if(Va.bt[i][b]!=Va.bt[a][b] && Va.bt[i][b].getIcon()!=null){
-				Va.bt[i][b].setBorder(red);
-				is = false;
-			}
+			if(Va.bt[a][i]!=Va.bt[a][b] && Va.bt[a][i].getIcon()!=null)
+				return false;
+			if(Va.bt[i][b]!=Va.bt[a][b] && Va.bt[i][b].getIcon()!=null)
+				return false;
 			for(int j=0; j<8; j++){
-				if(Va.bt[i][j]!=Va.bt[a][b] && a-i==b-j && Va.bt[i][j].getIcon()!=null){
-					Va.bt[i][j].setBorder(red);
-					is = false;
-				}
-				if(Va.bt[i][j]!=Va.bt[a][b] && a+b==i+j && Va.bt[i][j].getIcon()!=null){
-					Va.bt[i][j].setBorder(red);
-					is = false;
-				}
+				if(Va.bt[i][j]!=Va.bt[a][b] && a-i==b-j && Va.bt[i][j].getIcon()!=null)
+					return false;
+				if(Va.bt[i][j]!=Va.bt[a][b] && a+b==i+j && Va.bt[i][j].getIcon()!=null)
+					return false;
 			}
 		}
-		return is;
+		return true;
 	}
-	private static void blackBorder(){
-		for(int i=0; i<8; i++){
-			for(int j=0; j<8; j++){
-				if(Va.bt[i][j].getIcon()!=null){
-					Va.bt[i][j].setBorder(black);
-					check(i,j);
-				}
-			}
-		}
+	private static boolean isWinner(){
+		for(int i=0; i<8; i++)
+			for(int j=0; j<8; j++)
+				if(Va.bt[i][j].getIcon()!=null && !check(i, j))
+					return false;
+		return true;
 	}
 }
